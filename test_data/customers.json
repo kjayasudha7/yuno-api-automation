@@ -1,0 +1,28 @@
+json
+{
+  "minimal_customer": {
+    "account_id": "to_complete",
+    "first_name": "Prema",
+    "last_name": "Jyothi",
+    "email": "prema.minimal@yuno.test"
+  },
+
+  "full_customer": {
+    "account_id": "to_complete",
+    "first_name": "Prema",
+    "last_name": "Jyothi",
+    "email": "prema.full@yuno.test",
+    "phone": "+919876543210",
+    "country": "IN",
+    "city": "Hyderabad",
+    "address": "Test Street 123",
+    "zip_code": "500081"
+  },
+
+  "invalid_customer": {
+    "account_id": "to_complete",
+    "first_name": "",
+    "last_name": "",
+    "email": "invalid-email"
+  }
+}
