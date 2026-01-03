@@ -1,3 +1,4 @@
+gherkin
 Feature: Cancel Payment
 
   @regression
