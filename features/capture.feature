@@ -1,3 +1,4 @@
+gherkin
 Feature: Capture Authorized Payment
 
   @sanity
