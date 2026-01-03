@@ -3,14 +3,11 @@ from behave import given, when, then
 from utils.api_client import ApiClient
 from utils.payload_builder import minimal_purchase_payload
 from utils.config import BASE_URL
+from utils.test_data_loader import load_cards
 
-VALID_CARD = {
-    "number": "4111111111111111",
-    "expiration_month": "12",
-    "expiration_year": "2030",
-    "cvv": "123",
-    "holder_name": "Test User"
-}
+cards = load_cards()
+VALID_CARD = cards["valid_card"]
+EXPIRED_CARD = cards["expired_card"]
 
 @given("a captured payment exists")
 def step_create_captured_payment(context):
