@@ -9,14 +9,6 @@ cards = load_cards()
 VALID_CARD = cards["valid_card"]
 EXPIRED_CARD = cards["expired_card"]
 
-EXPIRED_CARD = {
-    "number": "4000000000000069",
-    "expiration_month": "01",
-    "expiration_year": "2020",
-    "cvv": "123",
-    "holder_name": "Test User"
-}
-
 @given("an authorized payment exists")
 def step_create_authorized_payment(context):
     url = f"{BASE_URL}/payments"
