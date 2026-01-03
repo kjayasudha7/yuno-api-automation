@@ -1,3 +1,4 @@
+gherkin
 Feature: Authorization Payment API
 
   @sanity
