@@ -1,3 +1,4 @@
+gherkin
 Feature: Verify Card
 
   @sanity
