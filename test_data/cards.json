@@ -1,0 +1,42 @@
+json
+{
+  "valid_card": {
+    "number": "4111111111111111",
+    "expiration_month": "12",
+    "expiration_year": "2030",
+    "cvv": "123",
+    "holder_name": "Test User"
+  },
+
+  "invalid_card": {
+    "number": "4000000000000002",
+    "expiration_month": "12",
+    "expiration_year": "2030",
+    "cvv": "123",
+    "holder_name": "Test User"
+  },
+
+  "expired_card": {
+    "number": "4000000000000069",
+    "expiration_month": "01",
+    "expiration_year": "2020",
+    "cvv": "123",
+    "holder_name": "Test User"
+  },
+
+  "insufficient_funds_card": {
+    "number": "4000000000009995",
+    "expiration_month": "12",
+    "expiration_year": "2030",
+    "cvv": "123",
+    "holder_name": "Test User"
+  },
+
+  "cvv_mismatch_card": {
+    "number": "4000000000000127",
+    "expiration_month": "12",
+    "expiration_year": "2030",
+    "cvv": "999",
+    "holder_name": "Test User"
+  }
+}
