@@ -8,14 +8,7 @@ from utils.test_data_loader import load_cards
 cards = load_cards()
 VALID_CARD = cards["valid_card"]
 EXPIRED_CARD = cards["expired_card"]
-
-INVALID_CARD = {
-    "number": "4000000000000002",
-    "expiration_month": "12",
-    "expiration_year": "2030",
-    "cvv": "123",
-    "holder_name": "Test User"
-}
+INVALID_CARD = cards["invalid_card"]
 
 @when("I create a purchase payment with minimal required fields")
 def step_create_purchase(context):
