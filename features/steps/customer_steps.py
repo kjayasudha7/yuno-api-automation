@@ -10,6 +10,7 @@ customers = load_customers()
 def step_base_url(context):
     context.base_url = BASE_URL
 
+
 @when("I create a customer with minimal details")
 def step_create_minimal_customer(context):
     payload = customers["minimal_customer"].copy()
@@ -17,6 +18,7 @@ def step_create_minimal_customer(context):
 
     url = f"{context.base_url}/customers"
     context.response = ApiClient.post(url, context.headers, payload)
+
 
 @when("I create a customer with full details")
 def step_create_full_customer(context):
@@ -26,6 +28,7 @@ def step_create_full_customer(context):
     url = f"{context.base_url}/customers"
     context.response = ApiClient.post(url, context.headers, payload)
 
+
 @when("I create a customer without required fields")
 def step_create_invalid_customer(context):
     payload = customers["invalid_customer"].copy()
@@ -33,6 +36,7 @@ def step_create_invalid_customer(context):
 
     url = f"{context.base_url}/customers"
     context.response = ApiClient.post(url, context.headers, payload)
+
 
 @then("the customer id should be present in the response")
 def step_verify_customer_id(context):
