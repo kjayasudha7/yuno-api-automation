@@ -1,3 +1,6 @@
+python
+from constants.error_codes import ErrorCodes
+
 def validate_error_response(response, expected_status, expected_code):
     assert response.status_code == expected_status
 
