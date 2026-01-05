@@ -68,3 +68,77 @@ def response_status_201(context):
     response_json = context.response.json()
 
 
+#INVALID_AMOUNT (400)
+@when("I create a payment with invalid amount")
+def step_invalid_amount(context):
+    url = f"{BASE_URL}/payments"
+    payload = minimal_purchase_payload(VALID_CARD)
+    payload["amount"] = -100  # Invalid
+
+    context.response = ApiClient.post(url, context.headers, payload)
+
+@then("INVALID_AMOUNT error should be returned")
+def step_validate_invalid_amount(context):
+    validate_error_response(
+        response=context.response,
+        expected_status=400,
+        expected_code=ErrorCodes.INVALID_AMOUNT
+    )
+
+#INVALID_TOKEN (401)
+@when("I use an invalid token")
+def step_invalid_token(context):
+    context.headers["Authorization"] = "Bearer invalid_token"
+
+    url = f"{BASE_URL}/payments"
+    payload = minimal_purchase_payload(VALID_CARD)
+    context.response = ApiClient.post(url, context.headers, payload)
+
+@then("INVALID_TOKEN error should be returned")
+def step_validate_invalid_token(context):
+    validate_error_response(
+        context.response,
+        401,
+        ErrorCodes.INVALID_TOKEN
+    )
+
+#PAYMENT_NOT_FOUND (404)
+@when("I fetch a payment with invalid id")
+def step_payment_not_found(context):
+    url = f"{BASE_URL}/payments/invalid_id"
+    context.response = ApiClient.get(url, context.headers)
+
+
+@then("PAYMENT_NOT_FOUND error should be returned")
+def step_validate_payment_not_found(context):
+    validate_error_response(
+        context.response,
+        404,
+        ErrorCodes.PAYMENT_NOT_FOUND
+    )
+
+#IDEMPOTENCY_DUPLICATED (409)
+@when("I reuse the same idempotency key")
+def step_duplicate_idempotency(context):
+    headers = context.headers.copy()
+    headers["Idempotency-Key"] = "duplicate-key"
+
+    url = f"{BASE_URL}/payments"
+    payload = minimal_purchase_payload(VALID_CARD)
+
+    ApiClient.post(url, headers, payload)  # first call
+    context.response = ApiClient.post(url, headers, payload)  # duplicate
+
+
+@then("IDEMPOTENCY_DUPLICATED error should be returned")
+def step_validate_idempotency(context):
+    validate_error_response(
+        context.response,
+        409,
+        ErrorCodes.IDEMPOTENCY_DUPLICATED
+    )
+
+
+
+
+
