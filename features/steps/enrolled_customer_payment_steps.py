@@ -18,6 +18,7 @@ def step_create_customer(context):
     assert context.response.status_code == 201
     context.customer_id = context.response.json()["id"]
 
+
 @given("the customer has an enrolled card payment method")
 def step_enroll_card(context):
     enroll_url = f"{BASE_URL}/payment-methods/enroll"
@@ -36,6 +37,7 @@ def step_enroll_card(context):
     assert context.response.status_code == 201
     context.payment_method_id = context.response.json()["id"]
 
+
 @when("I create a purchase payment using enrolled customer")
 def step_purchase_with_enrolled_customer(context):
     payment_url = f"{BASE_URL}/payments"
@@ -49,8 +51,8 @@ def step_purchase_with_enrolled_customer(context):
             "id": context.customer_id
         }
     }
-
     context.response = ApiClient.post(payment_url, context.headers, payload)
+
 
 @then('the payment status should be "{expected_status}"')
 def step_verify_payment_status(context, expected_status):
