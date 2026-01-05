@@ -2,9 +2,9 @@
 {
   "minimal_customer": {
     "account_id": "to_complete",
-    "first_name": "Prema",
-    "last_name": "Jyothi",
-    "email": "prema.minimal@yuno.test"
+    "first_name": "Jaya",
+    "last_name": "Sudha",
+    "email": "jaya.minimal@yuno.test"
   },
 
   "full_customer": {
