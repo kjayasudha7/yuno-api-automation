@@ -57,7 +57,6 @@ def step_authorization_with_expired_card(context):
 
     context.response = ApiClient.post(url, context.headers, payload)
 
-
 @Then("the response status should be 402")
 def response_status_201(context):
      url = f"{BASE_URL}/payments"
@@ -86,6 +85,7 @@ def step_validate_invalid_amount(context):
         expected_code=ErrorCodes.INVALID_AMOUNT
     )
 
+
 #INVALID_TOKEN (401)
 @when("I use an invalid token")
 def step_invalid_token(context):
@@ -102,13 +102,13 @@ def step_validate_invalid_token(context):
         401,
         ErrorCodes.INVALID_TOKEN
     )
+    
 
 #PAYMENT_NOT_FOUND (404)
 @when("I fetch a payment with invalid id")
 def step_payment_not_found(context):
     url = f"{BASE_URL}/payments/invalid_id"
     context.response = ApiClient.get(url, context.headers)
-
 
 @then("PAYMENT_NOT_FOUND error should be returned")
 def step_validate_payment_not_found(context):
@@ -129,7 +129,6 @@ def step_duplicate_idempotency(context):
 
     ApiClient.post(url, headers, payload)  # first call
     context.response = ApiClient.post(url, headers, payload)  # duplicate
-
 
 @then("IDEMPOTENCY_DUPLICATED error should be returned")
 def step_validate_idempotency(context):
