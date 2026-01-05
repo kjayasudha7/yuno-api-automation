@@ -23,16 +23,19 @@ def step_authorized_payment_for_capture(context):
 
     context.authorization_id = response_json["id"]
 
+
 @when("I capture the authorized payment")
 def step_capture_authorization(context):
     capture_url = f"{BASE_URL}/payments/{context.authorization_id}/capture"
     context.response = ApiClient.post(capture_url, context.headers, {})
+
 
 @then('the payment status should be "CAPTURED"')
 def step_verify_capture_status(context):
     response_json = context.response.json()
     assert response_json["status"] == "CAPTURED"
     context.payment_id = response_json["id"]
+
 
 @when("I try to capture a payment without authorization")
 def step_capture_without_authorization(context):
