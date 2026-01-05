@@ -32,6 +32,7 @@ def step_create_authorization(context):
 
     context.response = ApiClient.post(url, context.headers, payload)
 
+
 @Then("the response status should be 201")
 def response_status_201(context):
      url = f"{BASE_URL}/payments"
