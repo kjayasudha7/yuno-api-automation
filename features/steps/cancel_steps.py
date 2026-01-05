@@ -23,15 +23,18 @@ def step_authorized_payment_for_cancel(context):
 
     context.authorization_id = response_json["id"]
 
+
 @when("I cancel the authorized payment")
 def step_cancel_authorized_payment(context):
     cancel_url = f"{BASE_URL}/payments/{context.authorization_id}/cancel"
     context.response = ApiClient.post(cancel_url, context.headers, {})
 
+
 @then('the payment status should be "CANCELLED"')
 def step_verify_cancel_status(context):
     response_json = context.response.json()
     assert response_json["status"] == "CANCELLED"
+
 
 @when("I try to cancel a captured payment")
 def step_cancel_captured_payment(context):
