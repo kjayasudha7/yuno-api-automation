@@ -2,9 +2,9 @@ python
 def minimal_customer_payload():
     return {
         "account_id": "to_complete",
-        "first_name": "Prema",
-        "last_name": "Jyothi",
-        "email": "prema.jyothi@yuno.test"
+        "first_name": "Jaya",
+        "last_name": "Sudha",
+        "email": "jaya.sudha@yuno.test"
     }
 
 def minimal_purchase_payload(card):
