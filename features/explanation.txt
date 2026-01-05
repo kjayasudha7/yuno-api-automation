@@ -1,0 +1,2 @@
+matches the real Yuno API lifecycle:
+Authenticate → Create Customer → Verify/Enroll → Purchase → Capture/Cancel → Refund.
