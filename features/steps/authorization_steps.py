@@ -31,6 +31,22 @@ def step_create_authorization(context):
 
     context.response = ApiClient.post(url, context.headers, payload)
 
+@Then("the response status should be 201")
+def response_status_201(context):
+     url = f"{BASE_URL}/payments"
+    payload = minimal_purchase_payload(VALID_CARD)
+    payload["transaction_type"] = "AUTHORIZATION"
+    context.response = ApiClient.post(url, context.headers, payload)
+
+    assert context.response.status_code == 201
+    response_json = context.response.json()
+
+
+@then('the payment status should be "AUTHORIZED"')
+def step_verify_authorized(context):
+    response_json = context.response.json()
+    assert response_json["status"] == "AUTHORIZED"
+
 
 @when("I create an authorization payment using expired card")
 def step_authorization_with_expired_card(context):
@@ -41,9 +57,14 @@ def step_authorization_with_expired_card(context):
     context.response = ApiClient.post(url, context.headers, payload)
 
 
-@then('the payment status should be "AUTHORIZED"')
-def step_verify_authorized(context):
+@Then("the response status should be 402")
+def response_status_201(context):
+     url = f"{BASE_URL}/payments"
+    payload = minimal_purchase_payload(VALID_CARD)
+    payload["transaction_type"] = "AUTHORIZATION"
+    context.response = ApiClient.post(url, context.headers, payload)
+
+    assert context.response.status_code == 402
     response_json = context.response.json()
-    assert response_json["status"] == "AUTHORIZED"
 
 
