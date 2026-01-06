@@ -67,6 +67,5 @@ This README documents:
 
 ---
 
-# 2. Folder Structure
 
 
